@@ -17,9 +17,7 @@ class Deck
 
   def pick_one_card
     mix_deck = @deck_content.shuffle
-    card = Card.new(mix_deck[0][0], mix_deck[0][1])
-    @deck_content.delete([mix_deck[0][0], mix_deck[0][1]])
-    card
+    card = mix_deck.pop
   end
 
 end
