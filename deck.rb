@@ -9,7 +9,7 @@ class Deck
     array = []
     for j in 1..4
       for i in 2..14
-        array << [Card.new(i, j).number, Card.new(i, j).color]
+        array << Card.new(i, j).to_a
       end
     end
     array
@@ -22,7 +22,7 @@ class Deck
     [card.number, card.color]
   end
 
-end
 
+end
 
 

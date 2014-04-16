@@ -1,5 +1,4 @@
 class Card
-attr_accessor :number, :color
   def initialize(number, color)
     @number, @color = number, color
   end
@@ -31,5 +30,8 @@ attr_accessor :number, :color
       "#{value}#{style}"
   end
 
-end
+  def to_a
+    [@number, @color]
+  end
 
+end
