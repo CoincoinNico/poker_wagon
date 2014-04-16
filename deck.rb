@@ -9,7 +9,7 @@ class Deck
     array = []
     for j in 1..4
       for i in 2..14
-        array << Card.new(i, j).to_a
+        array << Card.new(i, j)
       end
     end
     array
