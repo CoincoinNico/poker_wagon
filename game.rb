@@ -4,13 +4,6 @@ class Game
     @hand = []
   end
 
-  def deal
-    2.times do
-      @hand << deck.pick_card
-
-    end
-  end
-
 end
 
 
