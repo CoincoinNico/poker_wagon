@@ -31,10 +31,4 @@ class Card
       "#{value}#{style}"
   end
 
-  def to_a
-    [@number, @color]
-  end
-
 end
-
-p Card.new(4, 3).to_a
