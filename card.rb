@@ -1,4 +1,5 @@
 class Card
+  attr_reader :number, :color
   def initialize(number, color)
     @number, @color = number, color
   end
@@ -35,3 +36,5 @@ class Card
   end
 
 end
+
+p Card.new(4, 3).to_a
