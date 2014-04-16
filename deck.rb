@@ -16,8 +16,7 @@ class Deck
   end
 
   def pick_one_card
-    mix_deck = @deck_content.shuffle
-    card = mix_deck.pop
+    @deck_content.shuffle.pop
   end
 
 end
