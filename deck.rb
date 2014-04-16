@@ -1,0 +1,28 @@
+require_relative 'card.rb'
+
+class Deck
+  def initialize
+    @deck_content = generate
+  end
+
+  def generate
+    array = []
+    for j in 1..4
+      for i in 2..14
+        array << [Card.new(i, j).number, Card.new(i, j).color]
+      end
+    end
+    array
+  end
+
+  def pick_one
+    mix_deck = @deck_content.shuffle
+    card = Card.new(mix_deck[0][0], mix_deck[0][1])
+    @deck_content.delete([mix_deck[0][0], mix_deck[0][1]])
+    [card.number, card.color]
+  end
+
+end
+
+
+
