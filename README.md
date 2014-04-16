@@ -8,13 +8,13 @@ Objet de 52 cartes
 - définir les combinaisons possibles (pair, brelan, flush, etc.)
 
 Dealer :
-- board de 5 cartes : 3 puis 4 puis 5
-- check qui a gagné (c-à-d qui a le score le plus élevé)
+- définit un board de 5 cartes : 3 puis 4 puis 5
+- check qui a gagné (c-à-d qui a la combinaison main + board avec la valeur la plus élevée)
+- Enregistre à chaque fois le résultat de la partie (qui a gagné)
 
 Game :
-- Distribue les cartes
+- Distribue à chaque player sa main
+- Distribue l'argent au gagnant en puisant dans le pot
 
 Pot:
-  - Contient les mises des joueurs
-  - Distribue l'argent au gagnant
-
+- Contient les mises des joueurs
