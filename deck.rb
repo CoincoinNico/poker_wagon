@@ -16,13 +16,13 @@ class Deck
   end
 
   def pick_one_card
-    @deck_content.shuffle.pop
+    @deck_content.shuffle!.pop
   end
 
   def generate_board
     board = []
     5.times do
-      board << @deck_content.shuffle.pop
+      board << @deck_content.shuffle!.pop
     end
     board
   end
