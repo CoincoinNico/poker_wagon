@@ -27,61 +27,43 @@ nb_of_players = gets.chomp
 new_game = Game.new(nb_of_players)
 puts ""
 # creates the new players instances and stores them in an array
-players = []
+players_array = new_game.get_players_names
 
-number = 1
-new_game.number_of_players.to_i.times do
-  print "What is the name of Player ##{number} ? "
-  player_name = gets.chomp
-  players << Player.new(player_name)
-  number += 1
-end
+# starts the first round
+round = 1
+first_to_bind = 1
+begin
+  puts ""
+  puts "Beginning round ##{round}..."
+  # creates a deck of 52 cards
+  deck_one = Deck.new
+  puts ""
 
-# creates a deck of 52 cards
-deck_one = Deck.new
+  # gives each player a hand and stores them in an array
+  new_dealer = Dealer.new
+  players_hands = new_dealer.distribute_hands(players_array, deck_one)
 
-# gives each player a hand and stores them in an array
+  # the dealer gathers the blinds
+  default_blind = 20
+  new_dealer.gather_blinds(players_array, first_to_bind, default_blind)
+  new_dealer.display_stacks(players_array)
 
-puts ""
-players_hands = []
-
-players.each do |player|
-  players_hands << player.receive_hand(deck_one)
-  puts "#{player.name} received a #{player.hand[0]} and a #{player.hand[1]}"
-end
-
-# each player contributes money to the pot
-default_bet = 20
-players.each do |player|
-  player.stack -= default_bet
-  dealer.pot += default_bet
-end
-puts ""
-puts "Each player contributed #{default_bet}€ to the pot."
-puts ""
-# displays the board
-
-board = deck_one.generate_board
-puts ""
-puts "The board is composed of:"
-board.each do |card|
-  puts "- #{card}"
-end
-puts ""
-
-# dealer compares the hands and determines who won
-
-new_dealer = Dealer.new
-
-winner = new_dealer.compare_hands(players_hands)
+  # displays the board
+  board = deck_one.generate_board
+  deck_one.display_board(board)
 
 
-# the winner gets the pot!
+  # # dealer compares the hands and determines who won
+  # winner = new_dealer.compare_hands(players_hands)
 
-winner.stack += dealer.pot
-dealer.pot = 0
 
-puts ""
-players.each do |player|
-  puts "#{player.name} has #{player.stack}€ left"
-end
+  # # the winner gets the pot!
+  # winner.stack += dealer.pot
+  # dealer.pot = 0
+  # new_dealer.display_stacks(players_array)
+
+  puts "Do you want to play a new round ? (yes/no)"
+  answer = gets.chomp
+  round += 1
+  (first_to_bind + 1) >= players_array.length ? first_to_bind += 1 : first_to_bind = 0
+end until answer == "no"
