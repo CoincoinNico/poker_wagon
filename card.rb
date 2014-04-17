@@ -31,4 +31,6 @@ class Card
       "#{value}#{style}"
   end
 
+
+
 end

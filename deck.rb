@@ -22,3 +22,4 @@ class Deck
 end
 
 
+p Deck.new.pick_one_card
