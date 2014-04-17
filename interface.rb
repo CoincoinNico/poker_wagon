@@ -22,7 +22,7 @@ puts ""
 puts ""
 
 # starts a new game and asks for the number of players
-print "How many players take part in this game ? "
+print "How many players will play this game ? "
 nb_of_players = gets.chomp
 new_game = Game.new(nb_of_players)
 puts ""
@@ -34,7 +34,9 @@ round = 1
 first_to_bind = 1
 begin
   puts ""
+  sleep 1
   puts "Beginning round ##{round}..."
+  sleep 2
   # creates a deck of 52 cards
   deck_one = Deck.new
   puts ""
@@ -42,16 +44,16 @@ begin
   # gives each player a hand and stores them in an array
   new_dealer = Dealer.new
   players_hands = new_dealer.distribute_hands(players_array, deck_one)
-
+  sleep 2
   # the dealer gathers the blinds
   default_blind = 20
   new_dealer.gather_blinds(players_array, first_to_bind, default_blind)
   new_dealer.display_stacks(players_array)
-
+  sleep 2
   # displays the board
   board = deck_one.generate_board
-  deck_one.display_board(board)
-
+  new_dealer.display_board(board)
+  sleep 2
 
   # # dealer compares the hands and determines who won
   # winner = new_dealer.compare_hands(players_hands)
