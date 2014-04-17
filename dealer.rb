@@ -5,14 +5,15 @@ require_relative 'player.rb'
 
 class Dealer
 
+  attr_accessor :pot
+
   def initialize
+    @pot = 0
   end
 
-  # compare an array containing the hands of each player
+  # compare elements of the array containings the hands and returns the winner
   def compare_hands(hands)
 
-  # compares 2 hands,receive a winning hand
-  # receive a winning hand
-  # returns the name of the winner
+  end
 
 end
