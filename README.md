@@ -1,1 +1,1 @@
-Cool multiplayer terminal-based poker Texas Hold'em game
+Cool terminal-based multiplayer poker Texas Hold'em game
