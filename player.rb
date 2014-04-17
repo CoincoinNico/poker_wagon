@@ -1,9 +1,20 @@
+require_relative 'deck.rb'
+require_relative 'game.rb'
+require_relative 'card.rb'
+
 class Player
-  attr_reader :nom, :stack_jetons, :main_deux_cartes
-  def initialize(name, main_deux_cartes)
-    @nom = nom
-    @stack_jetons = 1000
-    @main_deux_cartes = main_deux_cartes
+  attr_reader :name, :stack, :hand
+  def initialize(name)
+    @name = name
+    @stack = 1000
   end
-  #main_deux_cartes
+
+  def receive_hand(deck)
+    @hand = []
+    2.times do
+      @hand << deck.pick_one_card
+    end
+    @hand
+  end
+
 end

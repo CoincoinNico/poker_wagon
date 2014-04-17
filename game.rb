@@ -1,14 +1,9 @@
 class Game
-  def initialize(nb_joueur)
-    @nb_joueur = nb_joueur
-    @hand = []
-  end
 
-  def deal
-    2.times do
-      @hand << deck.pick_card
+  attr_reader :number_of_players
 
-    end
+  def initialize(number_of_players)
+    @number_of_players = number_of_players
   end
 
 end
