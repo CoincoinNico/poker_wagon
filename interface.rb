@@ -27,7 +27,7 @@ nb_of_players = gets.chomp
 new_game = Game.new(nb_of_players)
 puts ""
 # creates the new players instances and stores them in an array
-players_array = new_game.get_players_names
+players = new_game.get_players_names
 
 # starts the first round
 round = 1
@@ -35,7 +35,9 @@ first_to_bind = 1
 begin
   puts ""
   sleep 1
+  puts "****************************"
   puts "Beginning round ##{round}..."
+  puts "****************************"
   sleep 2
   # creates a deck of 52 cards
   deck_one = Deck.new
@@ -43,13 +45,17 @@ begin
 
   # gives each player a hand and stores them in an array
   new_dealer = Dealer.new
-  players_hands = new_dealer.distribute_hands(players_array, deck_one)
+  players_hands = new_dealer.distribute_hands(players, deck_one)
   sleep 2
+
   # the dealer gathers the blinds
   default_blind = 20
-  new_dealer.gather_blinds(players_array, first_to_bind, default_blind)
-  new_dealer.display_stacks(players_array)
+  players_blinds_index = new_dealer.gather_blinds(players, first_to_bind, default_blind)
+  new_dealer.display_stacks(players)
   sleep 2
+
+  new_dealer.ask_for_bets(players, players_blinds_index, default_blind)
+  new_dealer.display_bets(players)
   # displays the board
   board = deck_one.generate_board
   new_dealer.display_board(board)
@@ -62,10 +68,12 @@ begin
   # # the winner gets the pot!
   # winner.stack += dealer.pot
   # dealer.pot = 0
-  # new_dealer.display_stacks(players_array)
+  # new_dealer.display_stacks(players)
 
   puts "Do you want to play a new round ? (yes/no)"
   answer = gets.chomp
   round += 1
-  (first_to_bind + 1) >= players_array.length ? first_to_bind += 1 : first_to_bind = 0
+  (first_to_bind + 1) >= players.length ? first_to_bind += 1 : first_to_bind = 0
 end until answer == "no"
+
+puts "See you later !"
