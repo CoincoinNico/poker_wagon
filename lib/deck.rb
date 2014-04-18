@@ -27,14 +27,6 @@ class Deck
     board
   end
 
-  def display_board(board)
-    puts ""
-    puts "The board is composed of:"
-    board.each do |card|
-      puts "- #{card}"
-    end
-    puts ""
-  end
 end
 
 p Deck.new.pick_one_card

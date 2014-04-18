@@ -7,26 +7,26 @@ class Card
   def to_s
       case @number
       when 1..10
-        value = "#{@number} of "
+        value = "#{@number}"
       when 11
-        value = "Jack of "
+        value = "Jack"
       when 12
-        value = "Queen of "
+        value = "Queen"
       when 13
-        value = "King of "
+        value = "King"
       when 14
-        value = "Ace of "
+        value = "Ace"
       end
 
       case @color
       when 1
-        style = "spades"
+        style = "\u2660"
       when 2
-        style = "hearts"
+        style = "\u2665"
       when 3
-        style = "clubs"
+        style = "\u2663"
       when 4
-        style = "diamonds"
+        style = "\u2662"
       end
       "#{value}#{style}"
   end
