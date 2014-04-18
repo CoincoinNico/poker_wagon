@@ -55,7 +55,9 @@ begin
   new_dealer.display_board(board)
   sleep 2
 
+  sleep 3
   # # dealer compares the hands and determines who won
+  new_dealer.display_hands(players_array, players_hands, board)
   # winner = new_dealer.compare_hands(players_hands)
 
 

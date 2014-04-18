@@ -1,4 +1,4 @@
-require_relative 'card.rb'
+ require_relative 'card.rb'
 
 class Deck
   def initialize
