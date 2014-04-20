@@ -1,3 +1,4 @@
+#generates an array of the players name: ["Olivier", "Edouard", "Nicolas"]
 class Game
 
   attr_reader :number_of_players

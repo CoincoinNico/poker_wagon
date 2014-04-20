@@ -1,14 +1,13 @@
+# returns the best combination of 5 cards among 5 cards
+# the return is ordered. For Two Pairs:
+# ["Two Pairs", [["High Pair"], ["High Pair"],["Low Pair"], ["Low Pair"], ["Kicker"]]
 require_relative 'card.rb'
 
 class HandValue
 
   def initialize(hand)
-    @card1 = hand[0]
-    @card2 = hand[1]
-    @card3 = hand[2]
-    @card4 = hand[3]
-    @card5 = hand[4]
-    @hand = sort_hand
+    @hand = hand
+    @hand_sorted = @hand.sort { |x, y| y.number <=> x.number }
     @hand_numbers = hand_numbers(@hand)
     @hand_color = hand_colors(@hand)
   end
@@ -16,14 +15,14 @@ class HandValue
   def my_best_hand
     if is_straight_flush?
       ["Straight Flush", sort_best_hand]
-    elsif is_square?
-      ["Square", sort_best_hand]
+    elsif is_four_of_a_kind?
+      ["Four of a Kind", sort_best_hand]
     elsif is_full_house?
       ["Full House", sort_best_hand]
     elsif is_flush?
-      ["Flush", @hand]
+      ["Flush", @hand_sorted]
     elsif is_straight?
-      ["Straight", @hand]
+      ["Straight", @hand_sorted]
     elsif is_three_of_a_kind?
       ["Three of a Kind", sort_best_hand]
     elsif is_two_pairs?
@@ -31,15 +30,11 @@ class HandValue
     elsif is_pair?
       ["Pair", sort_best_hand]
     else
-      ["High Card", @hand]
+      ["High Card", @hand_sorted]
     end
   end
 
   private
-    def sort_hand
-      [@card1, @card2, @card3, @card4, @card5].sort { |x, y| y.number <=> x.number }
-    end
-
     def hand_numbers(array_of_cards)
       numbers = {}
       array_of_cards.each do |card|
@@ -56,11 +51,12 @@ class HandValue
       colors
     end
 
+    #returns true if the combination is true at minima
     def is_straight_flush?
       is_flush? && is_straight? ? true : false
     end
 
-    def is_square?
+    def is_four_of_a_kind?
       @hand_numbers.select { |k, v| v == 4 }.length ==1 ? true : false
     end
 
@@ -79,7 +75,7 @@ class HandValue
     def is_straight?
       straight = true
       for i in 1...4 do
-        straight = false unless @hand[i-1].number-1 == @hand[i].number
+        straight = false unless @hand_sorted[i-1].number-1 == @hand_sorted[i].number
       end
       straight
     end
@@ -97,21 +93,26 @@ class HandValue
     end
 
     def sort_best_hand
+      #sort values by there occurrences, returns an array of arrays
       best_hand =[]
       occurences = @hand_numbers.to_a.sort_by {|a| [a[1], a[0]] }.reverse
-      winning_hand_numbers =[]
+      best_hand_numbers =[]
+      #returns an array of values
       occurences.each do |occurence|
         occurence.last.times do
-         winning_hand_numbers << occurence.first
+         best_hand_numbers << occurence.first
         end
       end
-      winning_hand_numbers.each do |number|
+      #associates the color to the value
+      #intermediate variable comme @hand_sorted to avoid a destroying method
+      var = @hand.sort { |x, y| y.number <=> x.number }
+      best_hand_numbers.each do |number|
         i = 0
-        while @hand.length > 0 && number != @hand[i].number
+        while var.length > 0 && number != var[i].number
         i += 1
         end
-        best_hand << @hand[i]
-        @hand.delete_at(i)
+        best_hand << var[i]
+        var.delete_at(i)
       end
       best_hand
     end

@@ -1,4 +1,6 @@
- require_relative 'card.rb'
+#generate a deck of 52 cards using card class
+#being able to pull random cards out of the deck to generate our flop, turn and river
+require_relative 'card.rb'
 
 class Deck
   def initialize
@@ -28,5 +30,3 @@ class Deck
   end
 
 end
-
-p Deck.new.pick_one_card

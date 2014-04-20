@@ -17,7 +17,13 @@ class Dealer
     players_hands_array = []
     players_array.each do |player|
       players_hands_array << player.receive_hand(deck)
-      puts "#{player.name} received a #{player.hand[0]} #{player.hand[1]}"
+      puts "We will show the hand of #{player.name}, press enter when you're ready to see it !"
+      gets
+      puts "#{player.name}, you have #{player.hand[0]} #{player.hand[1]}. Remember and press enter!"
+      gets
+      40.times do
+        puts "*"
+      end
     end
     players_hands_array
   end
@@ -30,16 +36,16 @@ class Dealer
       if index == first_to_bind
         player.stack -= default_blind
         @pot += default_blind
-        puts "- #{player.name} has placed a #{default_blind} blind"
+        puts "- #{player.name} has placed a #{default_blind} small blind"
         index = players_blinds_index[0]
-      elsif (index == first_to_bind + 1 && players_array.length < (first_to_bind + 1))
+      elsif (index == first_to_bind + 1 && players_array.length <= (first_to_bind + 1))
         players_array[0].stack -= default_blind*2
-        puts "- #{players_array[0].name} has placed a #{default_blind*2} blind"
+        puts "- #{players_array[0].name} has placed a #{default_blind*2} big blind"
         index = players_blinds_index[1]
       elsif (index == first_to_bind + 1 && players_array.length > (first_to_bind + 1))
         players_array[index].stack -= default_blind*2
         @pot += default_blind*2
-        puts "- #{player.name} has placed a #{default_blind*2} blind"
+        puts "- #{player.name} has placed a #{default_blind*2} big blind"
         index = players_blinds_index[1]
       end
     end

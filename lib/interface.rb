@@ -31,7 +31,7 @@ players = new_game.get_players_names
 
 # starts the first round
 round = 1
-first_to_bind = 1
+first_to_bind = 0
 begin
   puts ""
   sleep 1

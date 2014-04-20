@@ -1,3 +1,4 @@
+# create an object card with two attributes: face value and color
 class Card
   attr_reader :number, :color
   def initialize(number, color)
